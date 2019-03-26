@@ -15,7 +15,7 @@ public class CustomerSwitchesLanguage extends ParentTest {
         loginPage.clickOnEnterButtonB2C();
         myProfilePage.clickOnPrivacyPopupOKAYbutton();
         myProfilePage.languageInProfileIsRU();
-        myProfilePage.languageSwiftFromRUtoLV();
+        myProfilePage.languageSwiftFromRUtoLV();// i am trying to make push
 
         checkExpectedResult("The B2C user has NOT changed the language to LV", myProfilePage.languageInProfileIsLV());
 
