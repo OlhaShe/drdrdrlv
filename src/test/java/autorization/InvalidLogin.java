@@ -21,7 +21,7 @@ public class InvalidLogin extends ParentTest {
     }
 
 
-    @Parameterized.Parameters(name = "Paremeter are {0} and {1}")
+    @Parameterized.Parameters(name = "Paremeters are {0} and {1}")
     public static Collection testData() {
         return Arrays.asList(new Object[][]{
                 {"testlog@gmail.com", "$%^$%^$%^99Kk"},
@@ -36,7 +36,8 @@ public class InvalidLogin extends ParentTest {
         loginPage.enterPasswordForB2C(password);
         loginPage.clickOnEnterButtonB2C ();
 
-        checkExpectedResult("User's profile shouldn't be opened", !myProfilePage.sectionMyProfilepresent());
+        checkExpectedResult("User's profile shouldn't be opened",
+                !myProfilePage.sectionMyProfilepresent());
     }
 
     @Test

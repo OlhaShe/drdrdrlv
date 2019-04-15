@@ -12,7 +12,8 @@ public class ValidLogin extends ParentTest {
         loginPage.enterPasswordForB2C("$%^$%^$%^99Kk");
         loginPage.clickOnEnterButtonB2C();
 
-        checkExpectedResult("Profile section for B2C user was open", myProfilePage.sectionMyProfilepresent());
+        checkExpectedResult("Profile section for B2C user was open",
+                myProfilePage.sectionMyProfilepresent());
     }
 
     @Test

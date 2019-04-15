@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -26,7 +27,7 @@ public class MainPage extends ParentPage {
     WebElement profileInRU;
 
 
-    public void openMainPage() {
+    public void openMainPageInRU() {
         actionsWithElements.openSiteRU();
     }
 
@@ -34,7 +35,7 @@ public class MainPage extends ParentPage {
         actionsWithElements.openSiteLV();
     }
 
-
+    @Step
     public void checkSiteLanguageIsRU() {
         actionsWithElements.isElementPresent(languageIS_RU);
     }
