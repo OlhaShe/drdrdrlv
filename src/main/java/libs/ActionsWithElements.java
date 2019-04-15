@@ -1,8 +1,8 @@
 package libs;
 
 
-import org.apache.http.util.Asserts;
 import org.apache.log4j.Logger;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -76,7 +76,7 @@ public class ActionsWithElements {
 
     public boolean isElementPresent(WebElement element) {
         try {
-            wait10.until(ExpectedConditions.elementToBeClickable(element));
+            // wait10.until(ExpectedConditions.elementToBeClickable(element));
             boolean isDisplayed = element.isDisplayed();
             logger.info("Element -- " + element + " --is displayed");
             return isDisplayed;
@@ -87,8 +87,21 @@ public class ActionsWithElements {
         }
     }
 
+    public String toGetTextValue(WebElement element) {
 
-    public void switchLanguage(WebElement element, String needToBecome, WebElement languageButton, WebElement privacyPopupButton) {
+        try {
+            wait10.until(ExpectedConditions.elementToBeClickable(element));
+            return element.getText();
+
+        } catch (Exception e) {
+            logger.error("Element -- " + element + "is not choosen");
+        }
+
+        return element.getText();
+    }
+
+
+  public void switchLanguage(WebElement element, String needToBecome, WebElement languageButton, WebElement privacyPopupButton) {
         if ("RU".equals(needToBecome) || "LV".equals(needToBecome)) {
             try {
                 if (element.isDisplayed() && "RU".equals(needToBecome)) {
@@ -116,4 +129,39 @@ public class ActionsWithElements {
 
         }
     }
+
+
+    public boolean switchLanguageTest2(String stelement, WebElement languageButton, WebElement privacyPopupButton, WebElement profileNameSection) {
+        if (stelement.equals("RU") || stelement.equals("LV"))
+            try {
+                if (stelement.equals("RU")) {
+                    try {
+                        wait10.until(ExpectedConditions.elementToBeClickable(privacyPopupButton));
+                        privacyPopupButton.click();
+                        wait10.until(ExpectedConditions.elementToBeClickable(languageButton));
+                        languageButton.click();
+                        Assert.assertEquals(profileNameSection.getText(), "Mans profils");
+                        return true;
+                    } catch (Exception e) {
+                        logger.error("Language wasn't switched to LV");
+                        return false;
+                    }
+            }
+                if (stelement.equals("LV")) {
+
+                    wait10.until(ExpectedConditions.elementToBeClickable(privacyPopupButton));
+                    privacyPopupButton.click();
+                    wait10.until(ExpectedConditions.elementToBeClickable(languageButton));
+                    languageButton.click();
+                    Assert.assertEquals(profileNameSection.getText(), "Мой профиль");
+                    logger.info("Language profile was switched from LV to RU");
+                    return true;
+                }
+            } catch (Exception e) {
+                logger.error("Language need to be RU or LV");
+            }
+        return false;
+
+    }
+
 }

@@ -1,4 +1,4 @@
-package languageSwitch;
+package autorization;
 
 import libs.SpreadsheetData;
 import org.junit.Test;
@@ -11,13 +11,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
 
+
 @RunWith(Parameterized.class)
 
-public class CustomerSwitchesLanguage extends ParentTest {
+public class InvalidLoginB2BWithExelParamethers extends ParentTest {
     String login;
     String password;
 
-    public CustomerSwitchesLanguage(String login, String password) {
+    public InvalidLoginB2BWithExelParamethers(String login, String password) {
         this.login = login;
         this.password = password;
     }
@@ -26,17 +27,16 @@ public class CustomerSwitchesLanguage extends ParentTest {
     public static Collection testData() throws IOException {
         InputStream spreadsheet //apreadsheet - peremennaya kyda zapisivayoutsia dannue
                 = new FileInputStream(configProperties.DATA_FILE_PATH() + "dataForUserLogin.xls");
-        return new SpreadsheetData(spreadsheet, "validLoginB2C").getData();
+        return new SpreadsheetData(spreadsheet, "invalidLoginData").getData();// ЭТО ВКЛАДКИ НАЗВАНИЕ
     }
 
+
     @Test
-    public void customerB2CSwitchLanguage() {
-        loginPage.loginB2C(login, password);
-        myProfilePage.switchingLanguageProfile();
+    public void invalidLoginB2BWithExelData () {
+        loginPage.loginB2B(login, password);
 
-        checkExpectedResult("The B2C user has NOT changed the language to LV",
-                myProfilePage.switchingLanguageProfile());
-
+        checkExpectedResult("The test with invalid login wasn't successful for B2B user",
+                !myProfilePage.sectionMyProfilepresent());
 
     }
 }

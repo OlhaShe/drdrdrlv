@@ -1,4 +1,4 @@
-package languageSwitch;
+package autorization;
 
 import libs.SpreadsheetData;
 import org.junit.Test;
@@ -13,11 +13,11 @@ import java.util.Collection;
 
 @RunWith(Parameterized.class)
 
-public class CustomerSwitchesLanguage extends ParentTest {
+public class ValidLoginB2CWithExelParamethers extends ParentTest {
     String login;
     String password;
 
-    public CustomerSwitchesLanguage(String login, String password) {
+    public ValidLoginB2CWithExelParamethers(String login, String password) {
         this.login = login;
         this.password = password;
     }
@@ -30,13 +30,12 @@ public class CustomerSwitchesLanguage extends ParentTest {
     }
 
     @Test
-    public void customerB2CSwitchLanguage() {
+    public void validLoginB2C () {
         loginPage.loginB2C(login, password);
-        myProfilePage.switchingLanguageProfile();
 
-        checkExpectedResult("The B2C user has NOT changed the language to LV",
-                myProfilePage.switchingLanguageProfile());
-
-
+        checkExpectedResult("Login as B2C user wasn't executed",
+                myProfilePage.sectionMyProfilepresent());
     }
+
+
 }

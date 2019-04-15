@@ -7,7 +7,7 @@ public class GuestSwitchesLanguage extends ParentTest {
 
     @Test
     public void guestSwitchLanguageToLV () {
-        mainPage.openMainPage();
+        mainPage.openMainPageInRU();
         mainPage.checkSiteLanguageIsRU();
         mainPage.clickOnLanguageButton();
 
@@ -18,7 +18,6 @@ public class GuestSwitchesLanguage extends ParentTest {
     }
 
     @Test
-
     public void guestSwitchLanguageToRU () {
         mainPage.openMainPageInLV ();
         mainPage.checkSiteLanguageIsLV();
